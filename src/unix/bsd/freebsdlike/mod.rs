@@ -38,6 +38,8 @@ s! {
         pub fflags: ::c_uint,
         pub data: ::intptr_t,
         pub udata: *mut ::c_void,
+//        #[cfg(target_os_version = "12")] XXX
+        pub ext: [u64; 4],
     }
 
     pub struct sockaddr_storage {

@@ -1,6 +1,10 @@
 pub type fflags_t = u32;
 pub type clock_t = i32;
-pub type ino_t = u32;
+//        #[cfg(target_os_version = "12")] XXX
+pub type ino_t = u64;
+//        #[cfg(not(target_os_version = "12"))] XXX
+//pub type ino_t = u32;
+
 pub type lwpid_t = i32;
 pub type nlink_t = u16;
 pub type blksize_t = u32;
