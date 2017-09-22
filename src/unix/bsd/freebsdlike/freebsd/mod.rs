@@ -6,7 +6,10 @@ pub type ino_t = u64;
 //pub type ino_t = u32;
 
 pub type lwpid_t = i32;
-pub type nlink_t = u16;
+//        #[cfg(target_os_version = "12")] XXX
+pub type nlink_t = u64;
+//        #[cfg(not(target_os_version = "12"))] XXX
+//pub type nlink_t = u16;
 pub type blksize_t = u32;
 pub type clockid_t = ::c_int;
 pub type sem_t = _sem;
@@ -48,10 +51,22 @@ s! {
     }
 
     pub struct dirent {
-        pub d_fileno: u32,
+//        #[cfg(target_os_version = "12")] XXX
+        pub d_fileno: u64,
+//        #[cfg(target_os_version = "12")] XXX
+        pub d_off: u64,
+//        #[cfg(not(target_os_version = "12"))] XXX
+        //pub d_fileno: u32,
         pub d_reclen: u16,
         pub d_type: u8,
-        pub d_namlen: u8,
+//        #[cfg(not(target_os_version = "12"))] XXX
+//        pub d_namlen: u8,
+//        #[cfg(target_os_version = "12")] XXX
+        pub d_pad0: u8,
+//        #[cfg(target_os_version = "12")] XXX
+        pub d_namlen: u16,
+//        #[cfg(target_os_version = "12")] XXX
+        pub d_pad1: u16,
         pub d_name: [::c_char; 256],
     }
 

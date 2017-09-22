@@ -1,4 +1,7 @@
-pub type dev_t = u32;
+//        #[cfg(target_os_version = "12")] XXX
+pub type dev_t = u64;
+//        #[cfg(not(target_os_version = "12"))] XXX
+//pub type dev_t = u32;
 pub type mode_t = u16;
 pub type pthread_attr_t = *mut ::c_void;
 pub type rlim_t = i64;
@@ -31,7 +34,6 @@ s! {
         __unused8: *mut ::c_void,
     }
 
-//        #[cfg(target_os_version = "12")] XXX
     pub struct kevent {
         pub ident: ::uintptr_t,
         pub filter: ::c_short,
@@ -39,18 +41,9 @@ s! {
         pub fflags: ::c_uint,
         pub data: ::intptr_t,
         pub udata: *mut ::c_void,
+//        #[cfg(target_os_version = "12")] XXX
         pub ext: [u64; 4],
     }
-
-//        #[cfg(not(target_os_version = "12"))] XXX
-    // pub struct kevent {
-    //     pub ident: ::uintptr_t,
-    //     pub filter: ::c_short,
-    //     pub flags: ::c_ushort,
-    //     pub fflags: ::c_uint,
-    //     pub data: ::intptr_t,
-    //     pub udata: *mut ::c_void,
-    // }
 
     pub struct sockaddr_storage {
         pub ss_len: u8,

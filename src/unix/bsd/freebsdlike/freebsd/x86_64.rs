@@ -18,14 +18,26 @@ s! {
         pub st_mtime_nsec: ::c_long,
         pub st_ctime: ::time_t,
         pub st_ctime_nsec: ::c_long,
+        //        #[cfg(target_os_version = "12")] XXX
+        pub st_birthtime: ::time_t,
+        //        #[cfg(target_os_version = "12")] XXX
+        pub st_birthtime_nsec: ::c_long,
         pub st_size: ::off_t,
         pub st_blocks: ::blkcnt_t,
         pub st_blksize: ::blksize_t,
         pub st_flags: ::fflags_t,
-        pub st_gen: ::uint32_t,
-        pub st_lspare: ::int32_t,
-        pub st_birthtime: ::time_t,
-        pub st_birthtime_nsec: ::c_long,
+        //        #[cfg(target_os_version = "12")] XXX
+        pub st_gen: ::uint64_t,
+        //        #[cfg(not(target_os_version = "12"))] XXX
+        //pub st_gen: ::uint32_t,
+        //        #[cfg(not(target_os_version = "12"))] XXX
+        //pub st_lspare: ::int32_t,
+        //        #[cfg(not(target_os_version = "12"))] XXX
+        //pub st_birthtime: ::time_t,
+        //        #[cfg(not(target_os_version = "12"))] XXX
+        //pub st_birthtime_nsec: ::c_long,
+        //        #[cfg(target_os_version = "12")] XXX
+        pub st_spare: [::uint64_t; 10],
     }
 }
 
